@@ -1,5 +1,5 @@
 const publicKey = "BJ1fhSbUDgbhbv6j8HnKW-4ou9oZ7AwB0G7D4Yv4gWQNcOR0jiBpFLwlfjtxQ0jrKmJIGH2KaZezhi7ncRi51tE";
-const backenURL = "http://localhost:3000";
+const backenURL = "https://push-notification-backend-020x.onrender.com";
 
 const urlBase64ToUint8Array = base64String => {
     const padding = '='.repeat((4 - (base64String.length % 4)) % 4);
