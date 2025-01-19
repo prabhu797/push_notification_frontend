@@ -34,6 +34,29 @@ self.addEventListener("activate", async (e) => {
     await saveSubscription(subscription);
 })
 
-self.addEventListener("push", e => {
-    self.registration.showNotification("Wohoo!!", { body: e.data.text() });
-})
+self.addEventListener("push", (event) => {
+    const data = event.data.json();  // Parse the JSON payload
+    const { title, body, icon } = data;  // Extract title, body, and icon
+
+    // Show the notification with the appropriate data
+    event.waitUntil(
+        self.registration.showNotification(title, {
+            body: body,
+            icon: icon,  // Path to the icon image
+            // Optionally, you can add additional notification options here
+            badge: '/assets/images/badge.png',  // Path to a badge (if needed)
+            tag: 'push-notification',  // Optional: Adds a unique identifier for the notification
+            actions: [
+                {
+                    action: 'open',
+                    title: 'Open',
+                },
+                {
+                    action: 'close',
+                    title: 'Close',
+                },
+            ],
+        })
+    );
+});
+
